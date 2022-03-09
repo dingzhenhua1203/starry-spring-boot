@@ -1,6 +1,6 @@
 package com.starry.codeview.DesignPatterns.P02_DynamicProxy;
 
-import com.starry.common.MonitorUtil;
+import com.starry.starrycore.MonitorUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.InvocationHandler;

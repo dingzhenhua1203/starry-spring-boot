@@ -11,6 +11,13 @@
     <packaging>pom</packaging>
     <name>starry-spring-boot</name>
     <description>starry-spring-boot</description>
+
+    <modules>
+        <module>starry-api</module>
+        <module>starry-core</module>
+        <module>starry-codeview</module>
+    </modules>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
