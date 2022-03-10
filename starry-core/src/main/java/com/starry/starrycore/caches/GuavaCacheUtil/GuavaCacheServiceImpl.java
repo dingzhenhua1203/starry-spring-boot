@@ -1,20 +1,26 @@
 package com.starry.starrycore.caches.GuavaCacheUtil;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.starry.starrycore.caches.MemoryCacheService;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Guava是Google团队开源的一款 Java 核心增强库，
  * 包含集合、并发原语、缓存、IO、反射等工具箱，性能和稳定性上都有保障，应用十分广泛
  *
  * <dependency>
- *     <groupId>com.google.guava</groupId>
- *     <artifactId>guava</artifactId>
- *     <version>30.1.1-jre</version>
+ * <groupId>com.google.guava</groupId>
+ * <artifactId>guava</artifactId>
+ * <version>30.1.1-jre</version>
  * </dependency>
  */
 public class GuavaCacheServiceImpl implements MemoryCacheService {
     @Override
-    public <T> void SetCache(String cacheKey, T objObject, long expSeconds) {
+    public <T> void SetCache(String cacheKey, T objObject, long expSeconds) throws ExecutionException {
         Cache<String, String> loadingCache = CacheBuilder.newBuilder()
                 //cache的初始容量
                 .initialCapacity(5)
@@ -33,7 +39,8 @@ public class GuavaCacheServiceImpl implements MemoryCacheService {
         String value = loadingCache.get(key, new Callable<String>() {
             @Override
             public String call() throws Exception {
-                return getValueFromDB(key);
+                // return getValueFromDB(key);
+                return null;
             }
         });
 
