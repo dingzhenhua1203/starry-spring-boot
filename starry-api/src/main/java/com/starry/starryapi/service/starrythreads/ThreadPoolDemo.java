@@ -22,7 +22,7 @@ public class ThreadPoolDemo {
          */
         ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(5, 5, 60L, TimeUnit.SECONDS,
                 new LinkedBlockingQueue(2000), Executors.defaultThreadFactory(),
-                new ThreadPoolExecutor.DiscardOldestPolicy());
+                new ThreadPoolExecutor.CallerRunsPolicy());
         // 如果我们将allowCoreThreadTimeOut设置为true，那么所有线程都可能超时，等于将corePoolSize的值设置为零，默认情况下就是false不会退出
         poolExecutor.allowCoreThreadTimeOut(false);
     }

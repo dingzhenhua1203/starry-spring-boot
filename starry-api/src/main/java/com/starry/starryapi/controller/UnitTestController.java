@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * 单元测试
  */
@@ -63,7 +65,6 @@ public class UnitTestController {
 
         LogThread2 log2 = new LogThread2("luffy");
         log2.start();
-
         LogThread3 log3 = new LogThread3();
         new Thread(log3).start();
     }
