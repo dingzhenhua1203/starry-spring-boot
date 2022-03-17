@@ -2,6 +2,7 @@ package com.starry.starrycore;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -11,7 +12,7 @@ import org.springframework.util.StringUtils;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
-@Service
+// @Service
 public class MailUtil {
 
     @Value("${spring.mail.username}")

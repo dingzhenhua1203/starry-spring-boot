@@ -31,8 +31,8 @@ spring:
     connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
   mail:
     host: smtp.126.com
-    username: mailshiqi_712@126.com
-    password: 2173991shiqi~
+    username: dingzhenhua
+    password: 123
     port: 25
     properties:
       mail:
