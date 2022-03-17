@@ -1,9 +1,9 @@
-package com.starry.starryapi.service.starrythreads;
+package com.starry.codeview.jucstudy;
 
-public class LogThread2 extends Thread {
+public class T01_Thread extends Thread {
     private String name;
 
-    public LogThread2(String name) {
+    public T01_Thread(String name) {
         this.name = name;
     }
 

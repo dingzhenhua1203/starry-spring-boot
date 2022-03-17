@@ -1,16 +1,14 @@
 package com.starry.starryapi.controller;
 
 import com.starry.starryapi.service.UnitTestService;
-import com.starry.starryapi.service.starrythreads.LogThread;
-import com.starry.starryapi.service.starrythreads.LogThread2;
-import com.starry.starryapi.service.starrythreads.LogThread3;
+import com.starry.codeview.jucstudy.LogThread;
+import com.starry.codeview.jucstudy.LogThread2;
+import com.starry.codeview.jucstudy.LogThread3;
 import com.starry.starrycore.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 单元测试
