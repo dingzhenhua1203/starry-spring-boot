@@ -24,7 +24,7 @@ public class AtomicDemo {
 
     public static void main(String[] args) {
         for (int i = 0; i < totalTimes; i++) {
-            ThreadPoolDemo.threadPools.execute(() -> {
+            ThreadPoolUtils.threadPools.execute(() -> {
                 testAtomicIncrBy();
                 // testIntIncrBy();
             });

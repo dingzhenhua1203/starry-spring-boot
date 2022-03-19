@@ -2,7 +2,7 @@ package com.starry.codeview.jucstudy;
 
 import java.util.concurrent.*;
 
-public class ThreadPoolDemo {
+public class ThreadPoolUtils {
 
     /**
      * corePoolSize 是在不超时情况下，保持活跃的最少线程数

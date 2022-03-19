@@ -2,6 +2,8 @@ package com.starry.codeview.jucstudy.parallels;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ParallelDemo {
     static List<Integer> list = new ArrayList<>();
@@ -11,6 +13,7 @@ public class ParallelDemo {
             list.add(i);
         }
 
+        //  本质forkjoin的底层
         list.parallelStream().forEach(x -> {
             System.out.println(x);
         });
@@ -18,6 +21,9 @@ public class ParallelDemo {
         list.stream().parallel().forEach(x -> {
             System.out.println(x);
         });
+
+        List<Integer> numList=Stream.of(1,2,3,4,5,6,7,8).collect(Collectors.toList());
+
 
         Runnable task1 = () -> {
             System.out.println("查询数据A");
@@ -29,5 +35,6 @@ public class ParallelDemo {
             System.out.println("查询数据C");
         };
 
+        // ThreadPoolDemo.threadPools.invokeAll(task1,task2,task3)
     }
 }
