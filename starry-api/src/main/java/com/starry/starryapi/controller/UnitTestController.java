@@ -1,14 +1,20 @@
 package com.starry.starryapi.controller;
 
+import com.starry.codeview.jucstudy.T01_Thread;
+import com.starry.codeview.jucstudy.T02_Runable;
+import com.starry.codeview.jucstudy.T03_Callable;
 import com.starry.starryapi.service.UnitTestService;
-import com.starry.codeview.jucstudy.LogThread;
-import com.starry.codeview.jucstudy.LogThread2;
-import com.starry.codeview.jucstudy.LogThread3;
+import com.starry.starryapi.studytest.circlereference.C;
 import com.starry.starrycore.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 /**
  * 单元测试
@@ -55,15 +61,33 @@ public class UnitTestController {
         }
     }
 
-    @GetMapping("test-all")
+    @GetMapping("test-all-thread")
     public void TestAll() {
-        LogThread log = new LogThread();
+        T01_Thread log = new T01_Thread("lua");
         log.start();
         System.out.println("-------------------------");
 
-        LogThread2 log2 = new LogThread2("luffy");
-        log2.start();
-        LogThread3 log3 = new LogThread3();
-        new Thread(log3).start();
+        T02_Runable log2 = new T02_Runable();
+        new Thread(log2).start();
+        System.out.println("-------------------------");
+
+        T03_Callable log3 = new T03_Callable();
+        // 使用FutureTask包装
+        FutureTask<String> futureTask = new FutureTask<>(log3);
+        // 包装为Thread
+        Thread thread = new Thread(futureTask, "futureTask");
+        thread.start();
+
+        // 创建一个线程池
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> future = executorService.submit(log3);
+    }
+
+    @Autowired
+    private C c;
+
+    @GetMapping("test-autowired")
+    public void TestThreadAutowired() {
+        c.sayHi();
     }
 }

@@ -33,7 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 来源：简书
  * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
-@Component
+// @Component
 public class HelloServiceInjectBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     private Map map = new ConcurrentHashMap(100);
