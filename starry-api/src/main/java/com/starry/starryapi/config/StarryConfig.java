@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 // @ComponentScan({"com.starry.starryapi.processors", "com.starry.starryapi.processors.tests"})
-@ComponentScan("com.starry.starryapi.processors")
+@ComponentScan({"com.starry.starryapi.processors", "com.starry.starryapi.service"})
 @Import(StarryConfig2.class)
 public class StarryConfig {
 

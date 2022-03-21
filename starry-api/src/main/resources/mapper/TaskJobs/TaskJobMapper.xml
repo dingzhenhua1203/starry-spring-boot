@@ -2,19 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starry.mapper.TaskJobMapper">
-    <select id="queryAll" resultType="com.starry.entity.TaskJobEntity">
+<mapper namespace="com.starry.starryapi.mapper.TaskJobMapper">
+    <select id="queryAll" resultType="com.starry.starryapi.entity.TaskJobEntity">
         select *
         from TaskJob
     </select>
-    <insert id="addTask" parameterType="com.starry.entity.TaskJobEntity">
+    <insert id="addTask" parameterType="com.starry.starryapi.entity.TaskJobEntity">
         INSERT INTO `dcstudy`.`TaskJob`(`TJTitleKey`, `TJTitle`, `TJHttpUrl`, `TJHttpVerb`, `TJCron`, `TJRemark`,
                                         `TJServiceSystem`, `TJRowStatus`, `TJCreateUser`, `TJCreateDate`,
                                         `TJUpdateDate`)
         VALUES (#{TJTitleKey}, #{TJTitle}, #{TJHttpUrl}, #{TJHttpVerb}, #{TJCron}, #{TJRemark}, 0, 1, #{TJCreateUser},
                 #{TJCreateDate}, #{TJUpdateDate});
     </insert>
-    <update id="updateTask" parameterType="com.starry.entity.TaskJobEntity">
+    <update id="updateTask" parameterType="com.starry.starryapi.entity.TaskJobEntity">
         update TaskJob set tjrowstatus=#{TJRowStatus} where TJID=#{TJID}
     </update>
 </mapper>

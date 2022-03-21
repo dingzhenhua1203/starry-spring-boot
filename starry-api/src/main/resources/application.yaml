@@ -1,9 +1,13 @@
 # 【多环境切换】用来配置读取哪个配置文件
 mybatis:
   #config-location: classpath:mybatis/mybatis.cfg.xml # mybatis配置文件所在路径
-  type-aliases-package: com.starry.entity # 所有Entity别名类所在包
+  type-aliases-package: com.starry.starryapi.entity # 所有Entity别名类所在包
   mapper-locations: classpath:/mapper/**/*.xml # mapper映射文件
 spring:
+  mvc:
+    pathmatch:
+      #matching-strategy: fix设置解决springboot2.6.x下swagger启动报错Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException
+      matching-strategy: ant_path_matcher
   profiles:
     active: dev
 server:
