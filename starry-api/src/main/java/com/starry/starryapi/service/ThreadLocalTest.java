@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
  * 1.使用完线程共享变量后，显示调用 ThreadLocalMap.remove 方法清除线程共享变量。
  * 2.JDK 建议 ThreadLocal 定义为 private static，这样 ThreadLocal 的弱引用问题则不存在了
  * <p>
+ * <p>
+ * 在进行get之前，必须先set，否则会报空指针异常；
+ * 如果想在get之前不需要调用set就能正常访问的话，必须重写initialValue()方法。
+ * <p>
+ * <p>
  * 执行结果：
  * doThreadLocal1...main获取值：parentVal
  * doThreadLocal1...main获取值：parentValTest2
@@ -19,9 +24,26 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ThreadLocalTest {
-    private static ThreadLocal<String> parentLocal = new InheritableThreadLocal<>(); // 这个可以父子线程中共享
-    private static ThreadLocal<String> parentLocal2 = new ThreadLocal<>();  // 这个只能当前线程
-    private static ThreadLocal<TestDemo> testThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<String> parentLocal = new InheritableThreadLocal<String>(
+    ) {
+        @Override
+        protected String initialValue() {
+            return "";
+        }
+    }; // 这个可以父子线程中共享
+    private static final ThreadLocal<String> parentLocal2 = new ThreadLocal<>();  // 这个只能当前线程
+    private static final ThreadLocal<TestDemo> testThreadLocal = new ThreadLocal<TestDemo>() {
+        @Override
+        protected TestDemo initialValue() {
+            return new TestDemo();
+        }
+    };
+
+    private static final ThreadLocal<String> parentLocal4 = ThreadLocal.withInitial(() -> {
+        return "";
+    });
+
+    private static ThreadLocal<String> parentLocal5 = ThreadLocal.withInitial(String::new);
 
     public void doThreadLocal() {
         parentLocal.set("parentVal");
@@ -32,6 +54,10 @@ public class ThreadLocalTest {
     }
 
     public void doThreadLocal1() {
+        /*
+        在进行get之前，必须先set，否则会报空指针异常；
+        如果想在get之前不需要调用set就能正常访问的话，必须重写initialValue()方法。
+         */
         System.out.println("doThreadLocal1..." + Thread.currentThread().getName() + "获取值：" + parentLocal.get());
         System.out.println("doThreadLocal1..." + Thread.currentThread().getName() + "获取值：" + parentLocal2.get());
     }

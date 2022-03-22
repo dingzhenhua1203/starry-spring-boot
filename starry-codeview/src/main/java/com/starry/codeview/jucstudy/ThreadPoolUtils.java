@@ -36,14 +36,14 @@ public class ThreadPoolUtils {
             for (int i = 0; i < 10; i++) {
                 final int temp = i;
                 es.execute(() -> {
-                    System.out.printf(Thread.currentThread().getName() + String.valueOf(temp)); // 永远是同一个线程执行
+                    System.out.print(Thread.currentThread().getName() + String.valueOf(temp)); // 永远是同一个线程执行
                 });
             }
 
             for (int i = 0; i < 10; i++) {
                 final int temp = i;
                 expool.execute(() -> {
-                    System.out.printf(Thread.currentThread().getName() + String.valueOf(temp)); // 最多4个线程协作执行
+                    System.out.print(Thread.currentThread().getName() + String.valueOf(temp)); // 最多4个线程协作执行
                 });
             }
         } finally {
