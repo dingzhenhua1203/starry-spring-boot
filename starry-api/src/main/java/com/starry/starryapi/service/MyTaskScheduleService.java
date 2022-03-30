@@ -13,7 +13,7 @@ public class MyTaskScheduleService {
     @Autowired
     private TestDemo testDemo;
 
-    @Scheduled(cron = "0/10 * * * * ? ")
+    // @Scheduled(cron = "0/10 * * * * ? ")
     public void PrintfHelloJob() {
         testDemo.doTest("测试aaa");
         System.out.println("同步Hello，当前时间" + LocalDate.now() + "线程名" + Thread.currentThread().getName() + ",hello!!");
@@ -27,8 +27,8 @@ public class MyTaskScheduleService {
     /**
      * 多线程执行定时任务，否则下一次执行会被上次执行情况干扰
      */
-    @Async
-    @Scheduled(cron = "0/10 * * * * ? ")
+    // @Async("asyncPrintPool")
+    // @Scheduled(cron = "0/10 * * * * ? ")
     public void AsyncPrintfHelloJob() {
         System.out.println("异步JOB,当前时间" + LocalDate.now() + "线程名" + Thread.currentThread().getName() + ",hello!!");
     }

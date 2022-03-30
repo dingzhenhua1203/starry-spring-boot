@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starry.starryapi.mapper.UserMapper">
+    <resultMap id="baseResultMap" type="UsrUserSimple">
+        <id column="UserID" property="UserID" ></id>
+        <id column="UserLoginID" property="UserLoginID" ></id>
+        <id column="UserName" property="UserName" ></id>
+        <id column="WorkNumber" property="WorkNumber" ></id>
+        <id column="UserAlias" property="UserAlias" ></id>
+        <id column="FullPathCode" property="FullPathCode" ></id>
+        <id column="FullPathText" property="FullPathText" ></id>
+        <id column="Grade" property="Grade" ></id>
+        <id column="CompanyName" property="CompanyName" ></id>
+        <id column="OrganizationID" property="OrganizationID" ></id>
+        <id column="OrganizationName" property="OrganizationName" ></id>
+        <id column="Corporates" property="Corporates" ></id>
+        <id column="PublicField" property="PublicField" ></id>
+        <id column="MobilePhone" property="MobilePhone" ></id>
+        <id column="UserType" property="UserType" ></id>
+        <id column="JobTitle" property="JobTitle" ></id>
+        <id column="BudgetOrgCode" property="BudgetOrgCode" ></id>
+        <id column="IsPublicAccounts" property="IsPublicAccounts" ></id>
+        <id column="BankAccount" property="BankAccount" ></id>
+        <id column="BankName" property="BankName" ></id>
+        <id column="SourceType" property="SourceType" ></id>
+        <id column="DeptOrgCode" property="DeptOrgCode" ></id>
+    </resultMap>
+<select id="getUsers" resultMap="baseResultMap">
+    SELECT
+        t.UserID,
+        t.UserLoginID,
+        t.UserName,
+        t.WorkNumber,
+        t.UserAlias,
+        t.FullPathCode,
+        t.FullPathText,
+        t.Grade,
+        t.CompanyName,
+        t.OrganizationID,
+        t.OrganizationName,
+        t.Corporates,
+        t.PublicField,
+        t.MobilePhone,
+        t.UserType,
+        t.JobTitle,
+        t.BudgetOrgCode,
+        t.IsPublicAccounts,
+        t.BankAccount,
+        t.BankName,
+        t.SourceType,
+        t.DeptOrgCode
+    FROM
+        USR_User t
+    WHERE
+        t.Status =1
+</select>
+
+</mapper>
