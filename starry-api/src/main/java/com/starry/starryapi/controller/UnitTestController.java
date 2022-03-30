@@ -3,6 +3,8 @@ package com.starry.starryapi.controller;
 import com.starry.codeview.jucstudy.T01_Thread;
 import com.starry.codeview.jucstudy.T02_Runable;
 import com.starry.codeview.jucstudy.T03_Callable;
+import com.starry.starryapi.entity.UsrUserSimple;
+import com.starry.starryapi.mapper.UserMapper;
 import com.starry.starryapi.service.UnitTestService;
 import com.starry.starryapi.studytest.circlereference.C;
 import com.starry.starrycore.MailUtil;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -89,5 +92,19 @@ public class UnitTestController {
     @GetMapping("test-autowired")
     public void TestThreadAutowired() {
         c.sayHi();
+    }
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @GetMapping("find-size")
+    public void findSize() {
+        List<UsrUserSimple> users = userMapper.getUsers();
+        // System.out.println(users.toString());
+        try {
+            Thread.sleep(5 * 60 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
