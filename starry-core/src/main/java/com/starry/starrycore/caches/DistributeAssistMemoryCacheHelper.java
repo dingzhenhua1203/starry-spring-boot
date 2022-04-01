@@ -1,5 +1,7 @@
 package com.starry.starrycore.caches;
 
+import com.starry.starrycore.caches.CaffeineUtil.CaffeineCacheTool;
+
 /**
  * @author : eric.ding
  * 分布式协同内存
@@ -24,28 +26,38 @@ public class DistributeAssistMemoryCacheHelper {
      * 设置数据缓存
      * <param name="cacheKey">缓存Key</param>
      * <param name="objObject">缓存内容</param>
-     * <param name="seconds">过期秒</param>
-     * <param name="isNeedNotifyAll">是否需要通知分布式系统其他机器，比如内容变化的则要通知给true， 本地内存失效重新写入的则不需要给false</param>
-     * <param name="priority">缓存项的优先级，你可以设置缓存项的到期策略一样，你还可以为缓存项赋予优先级。如果服务器内存紧缺的话，就会基于此优先级对缓存项进行清理以回收内存</param>
+     * <param name="isNotifyAll">是否需要通知分布式系统其他机器，比如内容变化的则要通知给true， 本地内存失效重新写入的则不需要给false</param>
      */
-    public static <T> void SetCache(
+    public static <T> void putCache(
             String cacheKey, T
-            objObject,
+            obj,
             long seconds, boolean
-                    isNeedNotifyAll) {
+                    isNotifyAll) {
+
+        CaffeineCacheTool caffeineCacheTool = CaffeineCacheTool.getInstance();
+        caffeineCacheTool.putCache(cacheKey, obj);
+        // 当数据修改后，需要通过redis来通知到各个负载机器更新内存缓存数据
+        if (isNotifyAll) {
+            GlobleAssistMemoryHelper.SetVersion(GlobleLockKey(cacheKey), GlobleAssistRateTypeEnum.Daily);
+        }
+
+        GlobleAssistMemoryHelper.SetLocalReceivedTag(GlobleLockKey(cacheKey), GlobleAssistRateTypeEnum.Daily, ",", 1);
+
     }
 
 
-    public static <T> T GetCache(String cacheKey) {
+    public static <T> T getCache(String cacheKey) {
         try {
             // set 不进去表示处理过，缓存是最新的，直接取用
+            if (!GlobleAssistMemoryHelper.SetLocalReceivedTag(GlobleLockKey(cacheKey), GlobleAssistRateTypeEnum.Daily, ",", 1)) {
+                // var result = MemoryCacheCoreHelper.GetCache<T>(cacheKey);
+                return null;
+            }
 
-
-        } catch (Exception exception) {
-
-
+            return null;
+        } catch (Exception ex) {
+            return null;
         }
-        return null;
     }
 
     /// <summary>

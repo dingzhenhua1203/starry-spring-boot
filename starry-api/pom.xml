@@ -10,9 +10,8 @@
     </parent>
     <artifactId>starry-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
-    <name>starry-api</name>
     <description>starry-api</description>
+    <name>starry-api</name>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -38,7 +37,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -113,7 +111,7 @@
     </dependencies>
 
     <build>
-        <finalName>starry-server</finalName>
+        <finalName>starry-api-server</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

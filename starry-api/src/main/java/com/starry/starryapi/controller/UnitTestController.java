@@ -98,13 +98,27 @@ public class UnitTestController {
     private UserMapper userMapper;
 
     @GetMapping("find-size")
-    public void findSize() {
+    public Integer findSize() {
         List<UsrUserSimple> users = userMapper.getUsers();
+        Integer count = users.size();
+
+        System.out.println("*********find-size:"+count);
         // System.out.println(users.toString());
         try {
-            Thread.sleep(5 * 60 * 1000);
+            Thread.sleep(30 * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return count;
+    }
+
+    @GetMapping("find-test")
+    public Integer findTest() {
+        List<UsrUserSimple> users = userMapper.getUsers();
+        Integer count = users.size();
+
+        System.out.println("*********find-test:"+count);
+
+        return count;
     }
 }

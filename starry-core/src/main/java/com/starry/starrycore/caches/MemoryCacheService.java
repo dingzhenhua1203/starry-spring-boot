@@ -3,9 +3,12 @@ package com.starry.starrycore.caches;
 import java.util.concurrent.ExecutionException;
 
 public interface MemoryCacheService {
-    <T> void SetCache(String cacheKey, T objObject, long expSeconds) throws ExecutionException;
 
-    <T> T GetCache(String cacheKey);
+    <T> Boolean putCache(String key, T obj);
 
-    Boolean DelCache(String cacheKey);
+    <T> T getCache(String key, Class<T> clazz);
+
+    Boolean delCache(String key);
+
+    Boolean cleanAll();
 }

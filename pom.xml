@@ -11,9 +11,9 @@
     </parent>
     <groupId>com.starry</groupId>
     <artifactId>starry-spring-boot</artifactId>
+    <name>starry-spring-boot</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>starry-spring-boot</name>
     <description>starry-spring-boot</description>
 
     <modules>

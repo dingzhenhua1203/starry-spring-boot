@@ -149,7 +149,7 @@ public class MyClassLoader extends ClassLoader {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         MyClassLoader cl = new MyClassLoader();
-        Class aClass = cl.loadClass("com.starry.codeview.ReflectDemo");
+        Class aClass = cl.loadClass("com.starry.codeview.reflactors.ReflectDemo");
         ReflectDemo o = (ReflectDemo) aClass.newInstance();
     }
 }
