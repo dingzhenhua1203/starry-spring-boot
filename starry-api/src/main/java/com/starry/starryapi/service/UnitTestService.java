@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ServiceLoader;
 
 @Service
@@ -46,45 +47,4 @@ public class UnitTestService {
 }
 
 
-public class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
-class Solution {
-
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode resp = new ListNode(0);
-        int jumpStep = 0;
-        ListNode tempL1 = l1;
-        ListNode tempL2 = l2;
-        do {
-            if (tempL2 != null) {
-                int sum = l1.val + tempL2.val + jumpStep;
-                jumpStep = 0;
-                if (sum >= 10) {
-                    resp = new ListNode(sum - 10);
-                    jumpStep = 1;
-                } else {
-                    resp = new ListNode(sum);
-                }
-                tempL2 = tempL2.next;
-            }
-            resp
-        } while ((tempL1 = tempL1.next) != null);
-
-    }
-}
 
