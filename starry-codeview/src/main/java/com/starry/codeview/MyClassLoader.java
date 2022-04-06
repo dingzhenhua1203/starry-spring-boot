@@ -1,5 +1,7 @@
 package com.starry.codeview;
 
+import com.starry.codeview.reflactors.A;
+
 import java.io.*;
 
 public class MyClassLoader extends ClassLoader {
@@ -149,7 +151,7 @@ public class MyClassLoader extends ClassLoader {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         MyClassLoader cl = new MyClassLoader();
-        Class aClass = cl.loadClass("com.starry.codeview.reflactors.ReflectDemo");
-        ReflectDemo o = (ReflectDemo) aClass.newInstance();
+        Class aClass = cl.loadClass("com.starry.codeview.reflactors.A");
+        A o = (A) aClass.newInstance();
     }
 }
