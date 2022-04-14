@@ -14,6 +14,14 @@ public class JUCTest {
         // 两种写法.原生写法没有采用lambda
         T03_Callable ca = new T03_Callable();
         Callable<String> ca1 = () -> "哈哈";
+
+        Callable<Integer> aa = () -> 123;
+        FutureTask<Integer> futureTask1 = new FutureTask<>(aa);
+        new Thread(futureTask1).start();
+        Executors.newCachedThreadPool().submit(aa).get();
+        FutureTask<String> ss = new FutureTask<>(ca1);
+
+
         // 如何执行呢？
         /*
         new Thread(Runnable target).start();
@@ -39,7 +47,7 @@ public class JUCTest {
         System.out.println("submit.get();..." + submit.get());
         //ThreadPoolUtils.threadPools.shutdown();
 
-        ThreadPoolUtils.threadPools.submit(()-> System.out.println("2"));
+        ThreadPoolUtils.threadPools.submit(() -> System.out.println("2"));
 
         ThreadPoolUtils.threadPools.execute(
                 () -> System.out.println(Thread.currentThread().getName() + "execute...."));
