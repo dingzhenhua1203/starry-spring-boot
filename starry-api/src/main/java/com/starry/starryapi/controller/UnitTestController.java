@@ -1,8 +1,8 @@
 package com.starry.starryapi.controller;
 
-import com.starry.codeview.jucstudy.T01_Thread;
-import com.starry.codeview.jucstudy.T02_Runable;
-import com.starry.codeview.jucstudy.T03_Callable;
+import com.starry.codeview.jucstudy.threadCreate.T01_Thread;
+import com.starry.codeview.jucstudy.threadCreate.T02_Runnable;
+import com.starry.codeview.jucstudy.threadCreate.T03_Callable;
 import com.starry.starryapi.entity.UsrUserSimple;
 import com.starry.starryapi.mapper.UserMapper;
 import com.starry.starryapi.service.UnitTestService;
@@ -70,7 +70,7 @@ public class UnitTestController {
         log.start();
         System.out.println("-------------------------");
 
-        T02_Runable log2 = new T02_Runable();
+        T02_Runnable log2 = new T02_Runnable();
         new Thread(log2).start();
         System.out.println("-------------------------");
 

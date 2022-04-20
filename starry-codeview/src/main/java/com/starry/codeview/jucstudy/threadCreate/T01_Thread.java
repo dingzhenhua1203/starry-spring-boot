@@ -1,4 +1,4 @@
-package com.starry.codeview.jucstudy;
+package com.starry.codeview.jucstudy.threadCreate;
 
 public class T01_Thread extends Thread {
     private String name;

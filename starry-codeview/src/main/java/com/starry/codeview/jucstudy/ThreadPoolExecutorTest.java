@@ -6,6 +6,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 测试线程池队列满了之后添加任务 谁先执行的问题
+ * 结论  新添加的交给多线程执行，如果不满，则从队列中拿任务执行
+ */
 public class ThreadPoolExecutorTest {
     public static void main(String[] args) {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 5, 10, TimeUnit.SECONDS,
