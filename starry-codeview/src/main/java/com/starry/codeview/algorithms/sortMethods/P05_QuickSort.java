@@ -40,9 +40,9 @@ public class P05_QuickSort {
                 max.add(arr[i]);
             }
         }
-        min = Arrays.stream(P05_QuickSort.QuickSort(min.toArray(new Integer[0]))).collect(Collectors.toList());
+        min = Arrays.stream(QuickSort(min.toArray(new Integer[0]))).collect(Collectors.toList());
         min.add(raw);
-        max = Arrays.stream(P05_QuickSort.QuickSort(max.toArray(new Integer[0]))).collect(Collectors.toList());
+        max = Arrays.stream(QuickSort(max.toArray(new Integer[0]))).collect(Collectors.toList());
         min.addAll(max);
         result = min.toArray(new Integer[0]);
         return result;
