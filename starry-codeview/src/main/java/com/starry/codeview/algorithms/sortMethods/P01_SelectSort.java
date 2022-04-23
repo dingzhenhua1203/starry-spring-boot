@@ -1,5 +1,7 @@
 package com.starry.codeview.algorithms.sortMethods;
 
+import java.util.ArrayList;
+
 /**
  * 选择排序
  * 在要排序的一组数中，选出最小（或者最大）的一个数与第1个位置的数交换；然后在剩下的数当中再找最小（或者最大）的与第2个位置的数交换，
@@ -13,4 +15,7 @@ package com.starry.codeview.algorithms.sortMethods;
  * https://m.html.cn/softprog/java/1114273077900.html
  */
 public class P01_SelectSort {
+    public static void main(String[] args) {
+        ArrayList<Integer> result=new ArrayList<>();
+    }
 }
