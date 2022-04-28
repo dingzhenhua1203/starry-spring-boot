@@ -20,6 +20,7 @@ public class RandomArraySample {
         for (int i = 0; i < length; i++) {
             arr[i] = RandomUtils.randomInt(MaxArrayValue);
         }
+        // System.out.println(Arrays.toString(arr));
         return arr;
     }
 

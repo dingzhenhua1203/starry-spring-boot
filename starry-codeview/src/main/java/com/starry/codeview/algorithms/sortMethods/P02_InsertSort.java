@@ -8,7 +8,7 @@ package com.starry.codeview.algorithms.sortMethods;
  * 所以，相等元素的前后顺序没有改变，从原无序序列出去的顺序就是排好序后的顺序
  * 所以插入排序是稳定的
  */
-public class InsertionSort {
+public class P02_InsertSort {
 
     public static void sort(Integer[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {

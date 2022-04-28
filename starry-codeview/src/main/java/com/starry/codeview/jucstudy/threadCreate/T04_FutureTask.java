@@ -1,12 +1,17 @@
-package com.starry.codeview.jucstudy;
+package com.starry.codeview.jucstudy.threadCreate;
+
+import com.starry.codeview.jucstudy.ThreadPoolUtils;
 
 import java.util.concurrent.*;
 
-public class JUCTest {
+/**
+ * FutureTask 可以包装runnable callable
+ */
+public class T04_FutureTask {
     /**
      * 测试callable的几种写法
      * 不推荐 推荐异步通信
-     * 因为futuretask.get()会产生阻塞
+     * 因为futureTask.get()会产生阻塞
      * <p>
      * ForkJoin  stream并行流
      */
@@ -15,35 +20,30 @@ public class JUCTest {
         T03_Callable ca = new T03_Callable();
         Callable<String> ca1 = () -> "哈哈";
 
-        Callable<Integer> aa = () -> 123;
-        FutureTask<Integer> futureTask1 = new FutureTask<>(aa);
-        new Thread(futureTask1).start();
-        Executors.newCachedThreadPool().submit(aa).get();
-        FutureTask<String> ss = new FutureTask<>(ca1);
+        // 如何执行
 
-
-        // 如何执行呢？
         /*
-        new Thread(Runnable target).start();
-        而FutureTask继承了RunnableFuture,RunnableFuture继承了Runnable和Future
-        并且FutureTask可以执行callable接口
-         */
-        FutureTask<String> stringFutureTask = new FutureTask<>(ca);
-        // 包装完成后启动，还是通过thread启动
-        new Thread(stringFutureTask).start();
-        // 获取到执行结果，但是会阻塞，如果任务没有执行完，来获取get的话会造成阻塞
-        System.out.println(stringFutureTask.isDone());
-        System.out.println("1...." + stringFutureTask.get());
-        System.out.println(stringFutureTask.isDone());
+        1.包装成futureTask 然后还是通过thread启动
+        */
+        FutureTask<String> futureTask1 = new FutureTask<>(ca1);
+        // 也可以包装runnable接口
+        FutureTask<String> futureTask2 = new FutureTask(() -> {
+            System.out.println("ss");
+        }, "success");
+        new Thread(futureTask1).start();
+        String str = futureTask1.get();
 
-        //这里要用FutureTask，否则不能加入Thread构造方法
-        FutureTask<String> futureTask = new FutureTask<>(ca1);
-        new Thread(futureTask).start();
-        System.out.println("callable..." + futureTask.get());
+        // 2.用线程池执行
+        String integer = Executors.newCachedThreadPool().submit(ca1).get();
+
+        // 获取到执行结果，但是会阻塞，如果任务没有执行完，来获取get的话会造成阻塞
+        System.out.println(futureTask1.isDone());
+        System.out.println("1...." + futureTask1.get());
+        System.out.println(futureTask1.isDone());
+
 
         // 多线程执行callable
         Future<String> submit = ThreadPoolUtils.threadPools.submit(() -> Thread.currentThread().getName() + "submit-call=Value");
-
         System.out.println("submit.get();..." + submit.get());
         //ThreadPoolUtils.threadPools.shutdown();
 
@@ -59,10 +59,10 @@ public class JUCTest {
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        T01_Thread thred = new T01_Thread("t1");
-        thred.start();
+        T01_Thread thread = new T01_Thread("t1");
+        thread.start();
 
-        T02_Runable runable = new T02_Runable();
+        T02_Runnable runable = new T02_Runnable();
         new Thread(runable).start();
 
         callableTest();
